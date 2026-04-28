@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Gravity Playground | VishwaNova 2026</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../shared/experience-kit.css" />
+    <link rel="stylesheet" href="../shared/mobile.css" />
+    <link rel="stylesheet" href="../shared/soundkit.css" />
+    <style>
+      canvas {
+        max-width: 100vw !important;
+        max-height: 80vh !important;
+        object-fit: contain;
+      }
+      body {
+        overflow-x: hidden;
+        touch-action: manipulation;
+      }
+      canvas {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+    <link rel="stylesheet" href="../shared/fx-kit.css" />
+  <link rel="stylesheet" href="../shared/engagement-kit.css" />
+</head>
+  <body>
+    <div id="loader">
+      <div class="loader-content">
+        <div class="loader-bounce">🔵</div>
+        <p class="loader-text">Calibrating gravity...</p>
+      </div>
+    </div>
+    <audio id="bg-audio" loop>
+      <source
+        src="https://cdn.pixabay.com/audio/2022/03/10/audio_b2c2e0f2f3.mp3?v=8"
+        type="audio/mpeg"
+      /></audio
+    ><button id="audio-toggle">🎵</button>
+    <main id="app">
+      <canvas id="physics-canvas"></canvas>
+      <div id="toolbar">
+        <button class="shape-btn active" data-shape="circle">⚽ Ball</button
+        ><button class="shape-btn" data-shape="rectangle">📦 Box</button
+        ><button class="shape-btn" data-shape="triangle">🔺 Triangle</button
+        ><button class="shape-btn" data-shape="star">⭐ Star</button>
+      </div>
+      <div id="gravity-controls">
+        <label
+          >Gravity:
+          <select id="gravity-select">
+            <option value="1">🌍 Earth</option>
+            <option value="0.16">🌙 Moon</option>
+            <option value="0">🚀 Zero-G</option>
+            <option value="-1">🔄 Reverse</option>
+          </select></label
+        ><button id="explode-btn">💥 Explode</button
+        ><button id="blackhole-btn">🕳️ Black Hole</button
+        ><button id="reset-btn">🗑️ Reset</button
+        ><span id="obj-count">Objects: 0</span>
+      </div>
+    </main>
+    <footer class="github-badge">
+      <a href="https://github.com/AkshatRock/weboreel-hackathon" target="_blank"
+        >⭐ GitHub Repo</a
+      ><span>VishwaNova 2026</span>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <script src="../shared/soundkit.js" defer></script>
+    <script src="../shared/experience-kit.js" defer></script>
+    <script src="../shared/engagement-kit.js" defer></script>
+    <script src="../shared/experience-configs-1-21.js" defer></script>
+    <script src="../shared/fx-kit.js" defer></script>
+    <script src="script.js"></script>
+  
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const parts = location.pathname.split("/").filter(Boolean);
+        const slug = parts[parts.length - 2] || "";
+        const cfg = window.WeboReelsExperienceConfigs1to21?.[slug] || { title: document.title };
+        window.WeboReelsExperienceKit?.init?.(cfg);
+      });
+    </script>
+</body>
+</html>

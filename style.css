@@ -1,0 +1,225 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --bg: #1a1a2e;
+  --font: "Caveat", cursive;
+}
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: var(--font);
+  background: var(--bg);
+  color: #fff;
+}
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  transition: opacity 0.8s;
+}
+#loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.loader-bounce {
+  font-size: 2rem;
+  animation: bounce 0.6s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+.loader-text {
+  position: absolute;
+  margin-top: 60px;
+  font-size: 1rem;
+  color: #ffd93d;
+}
+#physics-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#toolbar {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 10;
+}
+.shape-btn {
+  background: rgba(255, 217, 61, 0.1);
+  border: 1px solid rgba(255, 217, 61, 0.3);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.shape-btn:hover,
+.shape-btn.active {
+  background: rgba(255, 217, 61, 0.25);
+  box-shadow: 0 0 15px rgba(255, 217, 61, 0.3);
+}
+#gravity-controls {
+  position: fixed;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  z-index: 10;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#gravity-controls label {
+  font-size: 1rem;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+#gravity-controls select {
+  background: #1a1a2e;
+  color: #ffd93d;
+  border: 1px solid #333;
+  padding: 0.3rem;
+  border-radius: 8px;
+  font-family: var(--font);
+  font-size: 1rem;
+}
+#gravity-controls button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #333;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--font);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+#gravity-controls button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+#obj-count {
+  font-size: 1rem;
+  color: #6bcb77;
+}
+#audio-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100;
+  background: rgba(255, 217, 61, 0.1);
+  border: 1px solid rgba(255, 217, 61, 0.2);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  animation: pulse-audio 2s infinite;
+}
+@keyframes pulse-audio {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+.github-badge {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  z-index: 10;
+}
+.github-badge a {
+  color: #ffd700;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  #controls,
+  #hud,
+  .hud,
+  .ui-panel,
+  .ui-overlay,
+  .editor-container,
+  .controls-panel,
+  .floating-toolbar,
+  #toolbar,
+  #gravity-controls {
+    width: 95vw !important;
+    left: 2.5vw !important;
+    right: auto !important;
+    top: 10px !important;
+    bottom: auto !important;
+    padding: 15px !important;
+    flex-direction: column !important;
+    transform: none !important;
+  }
+  #title,
+  .logo,
+  .title,
+  #main-title {
+    font-size: 1.2rem !important;
+    letter-spacing: 2px !important;
+    top: 10px !important;
+  }
+  #audio-toggle {
+    top: 10px !important;
+    right: 10px !important;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1rem !important;
+  }
+  .github-badge {
+    bottom: 5px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: 0.5rem !important;
+    width: auto !important;
+    white-space: nowrap !important;
+  }
+  .paper {
+    width: 95vw !important;
+    height: 60vh !important;
+  }
+  canvas {
+    touch-action: none;
+  }
+}
